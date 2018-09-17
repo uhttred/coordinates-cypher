@@ -1,4 +1,4 @@
-# coordinates-cypher
+# Coordinates' Cypher
 
 This is a cryptographic algorithm based on the way text messages were written using cellphones with buttons numbered from 1 to 9, cellphones like Nokia 3310. 
 
