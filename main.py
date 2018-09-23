@@ -114,6 +114,21 @@ box = {
 	}
 }
 
+def rotate(char, n = 13):
+	# handle big numbers which do not scope the alphabet range
+	n = n%26 if n > 26 else n
+	# define wheter we are dealing with lowercase or uppercase letters
+	upper_case  = char.isupper()
+	lower_bound = ord('a') if not upper_case else ord('A')
+	upper_bound = ord('z') if not upper_case else ord('Z')
+	# determine whether the sum towards the equivalent will exceed the bounds
+	out_of_bounds = True if ord(char) + n > upper_bound else False
+	# compute the exact position of the equivalent
+	which = lower_bound + (ord(char) + n - upper_bound - 1) if out_of_bounds else ord(char) + n
+	# return the equivalent
+	return chr(which)
+
+
 def mask(char):
 	is_upper = char.isupper()
 	char = char.lower()
@@ -133,7 +148,7 @@ def unmask(m):
 def encode(s):
 	return labels.get('space').join([mask(char) for char in s])
 
-def decode(s):
+def decode(s): 
 	return labels.get('void').join([unmask(char) for char in s.split(labels.get('space'))])
 
 def main():
@@ -168,9 +183,15 @@ def main():
 
 	fr.close()
 	fw.close()
-	
+
+def test():
+	start = 97
+	for x in range(start, start + 26):
+		print(rotate(chr(x), 477))
+
 if __name__ == '__main__':
-	main()
+	#main()
+	test()
 
 
 
